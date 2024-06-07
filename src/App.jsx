@@ -4,14 +4,17 @@ import LoginPage from './Pages/LoginPage'
 import ProfilePage from './Pages/ProfilePage'
 import NotFoundPage from './Pages/NotFoundPage'
 import RegisterPage from './Pages/RegisterPage'
+import PrivateRoutes from './routes/PrivateRoutes'
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomePages />} exact />
+        <Route element={<PrivateRoutes />}>
+          <Route path='/' element={<HomePages />} exact />
+          <Route path='/me' element={<ProfilePage />} />
+        </Route>
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/me' element={<ProfilePage />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/register' element={<RegisterPage />} />
       </Routes>
