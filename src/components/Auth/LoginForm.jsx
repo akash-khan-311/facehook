@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
+import axios from 'axios'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -12,14 +13,33 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setError
   } = useForm()
 
-  const submitForm = formData => {
-    console.log(formData)
-    const user = { ...formData }
-    setAuth({ user })
-    navigate('/')
+  const submitForm = async formData => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/auth/login`,
+        formData
+      )
+      if (response.status === 200) {
+        const { token, user } = response.data
+        if (token) {
+          const authToken = token?.token
+          const refreshToken = token.refreshToken
+          console.log('login time auth token', authToken)
+          setAuth({ user, authToken, refreshToken })
+          navigate('/')
+        }
+      }
+    } catch (error) {
+      setError('root.random', {
+        type: 'random',
+        message: `User with Email ${formData.email} not found`
+      })
+      console.log(error)
+    }
   }
   return (
     <form
@@ -69,6 +89,7 @@ const LoginForm = () => {
           )}
         </div>
       </Field>
+      <p className='text-red-500 text-lg'>{errors?.root?.random?.message}</p>
       <Field>
         <button
           type='submit'

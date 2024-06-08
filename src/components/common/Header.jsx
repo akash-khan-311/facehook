@@ -1,4 +1,4 @@
-import Logo from '../../assets/images/logo.svg'
+import Logo from '../../assets/images/logo.png'
 import HomeIcon from '../../assets/icons/home.svg'
 import Notification from '../../assets/icons/notification.svg'
 import Avatar from '../../assets/images/avatars//avatar_1.png'
@@ -12,7 +12,7 @@ const Header = () => {
         {/* Logo */}
         <Link to='/'>
           <img
-            className='max-w-[100px] rounded-full lg:max-w-[130px]'
+            className='max-w-[100px] rounded-full lg:max-w-[200px]'
             src={Logo}
           />
         </Link>
