@@ -31,14 +31,14 @@ const Header = () => {
             <img src={Notification} alt='Notification' />
           </button>
           <Logout />
-          <Link className='flex-center !ml-8 gap-3'>
+          <Link to={'/me'} className='flex-center !ml-8 gap-3'>
             <span className='text-lg font-medium lg:text-xl'>
               {user?.firstName} {user?.lastName}
             </span>
             <img
-              className='max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px]'
+              className='max-h-[32px] max-w-[32px] w-32 h-32 lg:max-h-[44px] lg:max-w-[44px] rounded-full'
               src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user?.avatar}`}
-              alt="Avatar"
+              alt='Avatar'
             />
           </Link>
         </div>
