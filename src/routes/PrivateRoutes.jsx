@@ -4,6 +4,7 @@ import useAuth from '../hooks/useAuth'
 import { Outlet, Navigate } from 'react-router-dom'
 const PrivateRoutes = () => {
   const { auth } = useAuth()
+  console.log('token ===========> ', auth.authToken)
   return (
     <>
       {auth.authToken ? (
@@ -18,7 +19,7 @@ const PrivateRoutes = () => {
           </ProfileProvider>
         </>
       ) : (
-        <Navigate to='/login' />
+        <Navigate to='/login' replace />
       )}
     </>
   )
