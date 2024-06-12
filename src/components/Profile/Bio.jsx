@@ -27,7 +27,7 @@ const Bio = () => {
       }
       setEditMode(false)
     } catch (error) {
-      console.log(error)
+      
       dispatch({
         type: actions.profile.DATA_FETCH_ERROR,
         error: error.message

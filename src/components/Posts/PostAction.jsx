@@ -19,7 +19,7 @@ const PostAction = ({ post, commentCount }) => {
         setLiked(true)
       }
     } catch (error) {
-      console.log(error.message)
+      
       setLiked(false)
     }
   }

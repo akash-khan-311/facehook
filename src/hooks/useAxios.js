@@ -37,7 +37,7 @@ const useAxios = () => {
             )
             const { token } = response.data
 
-            console.log(`New Token: ${token}`)
+            
             setAuth({ ...auth, authToken: token })
 
             // Retry the original request with the new token

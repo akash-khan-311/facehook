@@ -27,7 +27,7 @@ const ProfilePage = () => {
               });
           }
       } catch (error) {
-          console.error(error);
+          
           dispatch({
               type: actions.profile.DATA_FETCH_ERROR,
               error: err.message,

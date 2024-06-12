@@ -27,8 +27,9 @@ const LoginForm = () => {
         const { token, user } = response.data
         if (token) {
           const authToken = token?.token
-          const refreshToken = token.refreshToken
-          console.log('login time auth token', authToken)
+          const refreshToken = token?.refreshToken
+
+          
           setAuth({ user, authToken, refreshToken })
           navigate('/')
         }
@@ -38,7 +39,7 @@ const LoginForm = () => {
         type: 'random',
         message: `User with Email ${formData.email} not found`
       })
-      console.log(error)
+   
     }
   }
   return (
