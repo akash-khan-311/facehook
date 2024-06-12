@@ -15,22 +15,28 @@ const ProfilePage = () => {
     dispatch({ type: actions.profile.DATA_FETHING })
     const fetchProfile = async () => {
       try {
-        const response = await api.get(
-          `${import.meta.env.VITE_SERVER_BASE_URL}/profile/${auth?.user?.id}`
-        )
-        if (response.status === 200) {
-          dispatch({ type: actions.profile.DATA_FETCHED, data: response.data })
-        }
+          const response = await api.get(
+              `${import.meta.env.VITE_SERVER_BASE_URL}/profile/${
+                  auth?.user?.id
+              }`
+          );
+          if (response.status === 200) {
+              dispatch({
+                  type: actions.profile.DATA_FETCHED,
+                  data: response.data,
+              });
+          }
       } catch (error) {
-        dispatch({
-          type: actions.profile.DATA_FETCH_ERROR,
-          error: error.message
-        })
+          console.error(error);
+          dispatch({
+              type: actions.profile.DATA_FETCH_ERROR,
+              error: err.message,
+          });
       }
-    }
+  };
     fetchProfile()
   }, [])
-  if (state.loading) return <div>Fetching Profile Data......</div>
+  if (state?.loading) return <div>Fetching Profile Data......</div>
   return (
     <>
       <ProfileInfo />

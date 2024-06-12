@@ -6,7 +6,7 @@ const Logout = () => {
   const navigate = useNavigate()
   const handleLogout = () => {
     setAuth({})
-    navigate('/login', { replace: true })
+    navigate('/login')
   }
   return (
     <button className='icon-btn' onClick={handleLogout}>
